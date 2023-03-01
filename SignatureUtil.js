@@ -61,7 +61,7 @@ class SignatureUtil{
         return formatedUrl;
     }
 
-    isJson(item) {
+    isArray(item) {
         item = typeof item !== "string"? JSON.stringify(item): item;
 
         try {
@@ -79,7 +79,7 @@ class SignatureUtil{
 
     generateServiceSignature(client_secret, method, url, auth_token, iso_time, bodyToHash = {}){
         let hash = this.hash('sha256','');
-        if(this.isJson(bodyToHash)){
+        if(this.isArray(bodyToHash)){
             let encoderData = JSON.stringify(bodyToHash);
             hash = this.hashBody(encoderData);
         }
@@ -87,8 +87,6 @@ class SignatureUtil{
         let signature = Buffer.from(crypto.createHmac('sha512',client_secret).update(stringToSign).digest()).toString('base64');
         return signature;
     }
-
-    
 
 }
 module.exports = SignatureUtil;
