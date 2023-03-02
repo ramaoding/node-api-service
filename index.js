@@ -30,11 +30,11 @@ app.post('/openapi/v1.0/*', (req, res) => {
       res.json(response.data);
     })
     .catch(function (error) {
-      // handle error
-      const dataRes = {}
-      dataRes.status = error.status;
-      dataRes.message = error.message;
-      res.json(dataRes);
+      if(error.status == null){
+        res.status(504).send(error.message);
+      }else{
+        res.status(error.status).send(error.message);
+      }
     });
 
   }else{
@@ -66,11 +66,11 @@ app.post('/openapi/v1.0/*', (req, res) => {
       res.json(response.data);
     })
     .catch(function (error) {
-      // handle error
-      const dataRes = {}
-      dataRes.status = error.status;
-      dataRes.message = error.message;
-      res.json(dataRes);
+      if(error.status == null){
+        res.status(504).send(error.message);
+      }else{
+        res.status(error.status).send(error.message);
+      }
     });
   } 
 
