@@ -31,9 +31,9 @@ app.post('/openapi/v1.0/*', (req, res) => {
     })
     .catch(function (error) {
       if(error.status == null){
-        res.status(504).send(error.message);
+        res.status(504).json({'status' : 504 , 'message' : error.message});
       }else{
-        res.status(error.status).send({'message' : error.message, 'test' : 'test'});
+        res.status(error.status).json({'status' : error.status , 'message' : error.message});
       }
     });
 
@@ -67,9 +67,9 @@ app.post('/openapi/v1.0/*', (req, res) => {
     })
     .catch(function (error) {
       if(error.status == null){
-        res.status(504).send(error.message);
+        res.status(504).json({'status' : 504 , 'message' : error.message});
       }else{
-        res.status(error.status).send(error.message);
+        res.status(error.status).json({'status' : error.status , 'message' : error.message});
       }
     });
   } 
@@ -91,8 +91,7 @@ app.post('/test/openapi/v1.0/*', (req, res) => {
           'X-CLIENT-KEY' : req.headers["x-client-key"],
           'X-SIGNATURE' : signaturOauth
         }, 
-        'body': req.body,
-        'test' : 'test'
+        'body': req.body
       }
     );
 
