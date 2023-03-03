@@ -91,7 +91,8 @@ app.post('/test/openapi/v1.0/*', (req, res) => {
           'X-CLIENT-KEY' : req.headers["x-client-key"],
           'X-SIGNATURE' : signaturOauth
         }, 
-        'body': req.body
+        'body': req.body,
+        'test' : 'test'
       }
     );
 
