@@ -33,7 +33,7 @@ app.post('/openapi/v1.0/*', (req, res) => {
       if(error.status == null){
         res.status(504).send(error.message);
       }else{
-        res.status(error.status).send(error.message);
+        res.status(error.status).send({'message' : error.message, 'test' : 'test'});
       }
     });
 
